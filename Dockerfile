@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
 # instala dependencias do sistema para o mariadb
-RUN apk add --no-cache musl-dev mariadb-connector-c-dev gcc mariadb-dev
+RUN apk add --no-cache gcc mariadb-connector-c-dev mariadb-dev musl-dev
 
 # instala dependencias python
 COPY requirements.txt .
