@@ -6,7 +6,8 @@ from .views import (
     atualizar_fornecedor_get, 
     atualizar_fornecedor_post,
     vizualizar_fornecedor, 
-    deletar_fornecedor
+    deletar_fornecedor_get,
+    deletar_fornecedor_post
 )
 
 urlpatterns = [
@@ -16,5 +17,8 @@ urlpatterns = [
     path('atualizar/<int:id>/', atualizar_fornecedor_get, name='fornecedor_atualizar'),
     path('atualizar/<int:id>/post/', atualizar_fornecedor_post, name='atualizar_fornecedor_post'),
     path('vizualizar/<int:id>/', vizualizar_fornecedor, name='fornecedor_vizualizar'),
-    path('deletar/<int:id>/', deletar_fornecedor, name='fornecedor_deletar'),
+    # rota GET para exibir a página de exclusão
+    path('deletar/<int:id>/', deletar_fornecedor_get, name='fornecedor_deletar'),
+    # rota POST para executar a exclusão
+    path('deletar/<int:id>/post/', deletar_fornecedor_post, name='deletar_fornecedor_post'),
 ]
