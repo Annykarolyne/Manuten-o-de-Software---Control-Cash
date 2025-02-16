@@ -526,13 +526,11 @@ class DetalharVendaViewTest(TestCase):
         self.assertEqual(item_inital_count, item_final_count)
 
         # sem o produto --------------------------------------------------------
-        item_inital_count = self.venda.item_set.count()
         self.client.post(self.target_url, {
             'produto': '',
             'quantidade': self.form_data['quantidade']
         })
         self.venda.refresh_from_db()
-        item_final_count = self.venda.item_set.count()
 
     def test_redirects_to_correct_page_on_sucessful_post_request(self):
         """Verifica se a view redireicona para a página esperada quando uma request de tipo post é bem sucedida"""
