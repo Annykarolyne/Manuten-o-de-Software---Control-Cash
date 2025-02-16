@@ -7,6 +7,7 @@ from .forms import CadastrarProduto
 
 # Redirecionamento padrão
 redirect_response = '/produto'
+redirect_update_product_response = 'produto/formUpdateProduto.html'
 
 @require_http_methods(["GET"])
 def home_produto(request):
@@ -49,13 +50,13 @@ def view_vizualizar_produto(request, id):
 def view_editar_produto(request, id):
     produto = get_object_or_404(Produto, id=id)
     
-    return render(request, 'produto/formUpdateProduto.html', {"produto": produto})
+    return render(request, redirect_update_product_response, {"produto": produto})
 
 @require_http_methods(["GET"])
 def view_atualizar_produto_get(request, id):
     produto = get_object_or_404(Produto, id=id)
     form = CadastrarProduto(instance=produto)
-    return render(request, 'produto/formUpdateProduto.html', {"produto": produto, "form": form})
+    return render(request, redirect_update_product_response, {"produto": produto, "form": form})
 
 @require_http_methods(["POST"])
 def view_atualizar_produto_post(request, id):
@@ -64,7 +65,7 @@ def view_atualizar_produto_post(request, id):
     if form.is_valid():
         form.save()
         return redirect(redirect_response)
-    return render(request, 'produto/formUpdateProduto.html', {"produto": produto, "form": form})
+    return render(request, redirect_update_product_response, {"produto": produto, "form": form})
 
 @require_http_methods(["GET"])
 def view_deletar_produto(request, id):
