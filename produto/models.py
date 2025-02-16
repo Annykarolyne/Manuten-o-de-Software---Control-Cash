@@ -13,10 +13,8 @@ class Produto(models.Model):
     nome = models.CharField(max_length=150)
     preco_venda = models.DecimalField(
         max_digits=10, decimal_places=2, verbose_name="preço", validators=[MinValueValidator(0.00)])
-    descricao = models.TextField(
-        blank=True, null=True, verbose_name="descrição")
-    quantidade_estoque = models.PositiveIntegerField(
-        verbose_name="quantidade em estoque")
+    descricao = models.TextField(blank=True, verbose_name="descrição")
+    quantidade_estoque = models.PositiveIntegerField(verbose_name="quantidade em estoque")
     data_registro = models.DateField(auto_now_add=True, verbose_name="data")
 
     def __str__(self):
