@@ -30,21 +30,24 @@ def listar_fornecedores(request):
     return render(request, 'homeFornecedores.html', {'page_obj': page_obj, 'pesquisa': nome_do_fornecedor})
 
 
-@require_http_methods(["GET", "POST"])
-def cadastrar_fornecedor(request):
+@require_http_methods(["GET"])
+def cadastrar_fornecedor_get(request):
     form = CadastrarFornecedor()
     form_endereco = EnderecoForm()
-    if request.method == 'POST':
-        form = CadastrarFornecedor(request.POST)
-        form_endereco = EnderecoForm(request.POST)
-        if form.is_valid() and form_endereco.is_valid():
-            endereco_salvo = form_endereco.save()
-            fornecedor_criado = form.save(commit=False)
-            fornecedor_criado.endereco = endereco_salvo
-            fornecedor_criado.save()
-            return redirect(redirect_response)
+    return render(request, 'formCriarFornecedor.html', {"form": form, 'endereco_form': form_endereco})
 
-    return render(request, 'formCriarForcedor.html', {"form": form, 'endereco_form': form_endereco})
+
+@require_http_methods(["POST"])
+def cadastrar_fornecedor_post(request):
+    form = CadastrarFornecedor(request.POST)
+    form_endereco = EnderecoForm(request.POST)
+    if form.is_valid() and form_endereco.is_valid():
+        endereco_salvo = form_endereco.save()
+        fornecedor_criado = form.save(commit=False)
+        fornecedor_criado.endereco = endereco_salvo
+        fornecedor_criado.save()
+        return redirect(redirect_response)
+    return render(request, 'formCriarFornecedor.html', {"form": form, 'endereco_form': form_endereco})
 
 
 @require_http_methods(["GET", "POST"])

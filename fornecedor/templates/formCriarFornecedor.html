@@ -23,7 +23,7 @@
     <h2 class="fs-2">Cadastrar fornecedor</h2>
 
     <div class="col-12 mb-5">
-      <form action="" method="post">
+      <form action="{% url 'cadastrar_fornecedor_post' %}" method="post">
         {% csrf_token %}
 
         {% include 'form_render.html' %}
