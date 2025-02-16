@@ -31,4 +31,4 @@ class ClienteForm(forms.ModelForm):
 class EnderecoForm(forms.ModelForm):
     class Meta:
         model = Endereco
-        fields = '__all__'
+        fields = ['cep', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'pais', 'complemento']
