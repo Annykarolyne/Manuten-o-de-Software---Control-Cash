@@ -49,23 +49,27 @@ def cadastrar_fornecedor_post(request):
         return redirect(redirect_response)
     return render(request, 'formCriarFornecedor.html', {"form": form, 'endereco_form': form_endereco})
 
-
-@require_http_methods(["GET", "POST"])
-def atualizar_fornecedor(request, id):
+@require_http_methods(["GET"])
+def atualizar_fornecedor_get(request, id):
     fornecedor = get_object_or_404(Fornecedor, id=id)
     endereco = fornecedor.endereco
     form = CadastrarFornecedor(instance=fornecedor)
     form_endereco = EnderecoForm(instance=endereco)
-    if request.method == 'POST':
-        form = CadastrarFornecedor(request.POST, instance=fornecedor)
-        form_endereco = EnderecoForm(request.POST, instance=endereco)
-        if form.is_valid() and form_endereco.is_valid():
-            endereco_salvo = form_endereco.save()
-            fornecedor_atualizado = form.save(commit=False)
-            fornecedor_atualizado.endereco = endereco_salvo
-            fornecedor_atualizado.save()
-            return redirect(redirect_response)
-    return render(request, 'formAtualizaFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
+    return render(request, 'formAtualizarFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
+
+@require_http_methods(["POST"])
+def atualizar_fornecedor_post(request, id):
+    fornecedor = get_object_or_404(Fornecedor, id=id)
+    endereco = fornecedor.endereco
+    form = CadastrarFornecedor(request.POST, instance=fornecedor)
+    form_endereco = EnderecoForm(request.POST, instance=endereco)
+    if form.is_valid() and form_endereco.is_valid():
+        endereco_salvo = form_endereco.save()
+        fornecedor_atualizado = form.save(commit=False)
+        fornecedor_atualizado.endereco = endereco_salvo
+        fornecedor_atualizado.save()
+        return redirect(redirect_response)
+    return render(request, 'formAtualizarFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
 
 
 @require_http_methods(["GET"])

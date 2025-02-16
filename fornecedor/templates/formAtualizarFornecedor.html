@@ -26,7 +26,7 @@
     <h2 class="fs-2">Editar fornecedor</h2>
 
     <div class="col-12 mb-5">
-      <form action="" method="post">
+      <form action="{% url 'atualizar_fornecedor_post' id=fornecedor.id %}" method="post">
         {% csrf_token %}
 
         {% include 'form_render.html' %}
