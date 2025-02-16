@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import *
+from .views import (
+    listar_fornecedores,
+    cadastrar_fornecedor,
+    atualizar_fornecedor,
+    vizualizar_fornecedor,
+    deletar_fornecedor
+)
 
 urlpatterns = [
     path('', listar_fornecedores, name='fornecedor_listar'),
