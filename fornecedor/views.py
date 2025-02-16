@@ -5,7 +5,7 @@ from django.views.decorators.http import require_http_methods
 from venda.forms import EnderecoForm
 
 from .forms import CadastrarFornecedor
-from .models import *
+from .models import Fornecedor
 
 redirect_response = 'fornecedor_listar'
 
