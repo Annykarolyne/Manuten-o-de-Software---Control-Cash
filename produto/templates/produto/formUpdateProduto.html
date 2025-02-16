@@ -23,7 +23,7 @@
     <h2 class="fs-2">Editar produto</h2>
 
     <div class="col-12 mb-5">
-      <form action="" method="post">
+      <form action="{% url 'view_atualizar_produto_post' produto.id %}" method="post">
         {% csrf_token %}
 
         {% include 'form_render.html' %}

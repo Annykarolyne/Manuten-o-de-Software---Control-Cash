@@ -23,7 +23,7 @@
         <div class="d-flex justify-content-start align-items-center gap-3">
           <h2 class="fs-2">{{ produto.nome }}</h2>
           <fieldset class="btn-group">
-            <a href="{% url 'view_atualizar_produto' produto.id %}" class="btn btn-sm btn-outline-primary d-block mb-2" title="Editar produto">
+            <a href="{% url 'view_atualizar_produto_get' produto.id %}" class="btn btn-sm btn-outline-primary d-block mb-2" title="Editar produto">
               <i class="bi bi-pen"></i>
             </a>
             <a href="{% url 'view_deletar_produto' produto.id %}" class="btn btn-sm btn-outline-primary d-block mb-2" title="Remover produto">

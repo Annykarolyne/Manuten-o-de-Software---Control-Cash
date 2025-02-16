@@ -51,17 +51,19 @@ def view_editar_produto(request, id):
     
     return render(request, 'produto/formUpdateProduto.html', {"produto": produto})
 
-@require_http_methods(["GET", "POST"])
-def view_atualizar_produto(request, id):
+@require_http_methods(["GET"])
+def view_atualizar_produto_get(request, id):
     produto = get_object_or_404(Produto, id=id)
     form = CadastrarProduto(instance=produto)
+    return render(request, 'produto/formUpdateProduto.html', {"produto": produto, "form": form})
 
-    if request.method == 'POST':
-        form = CadastrarProduto(request.POST, instance=produto)
-        if form.is_valid():
-            form.save()
-            return redirect(redirect_response)
-
+@require_http_methods(["POST"])
+def view_atualizar_produto_post(request, id):
+    produto = get_object_or_404(Produto, id=id)
+    form = CadastrarProduto(request.POST, instance=produto)
+    if form.is_valid():
+        form.save()
+        return redirect(redirect_response)
     return render(request, 'produto/formUpdateProduto.html', {"produto": produto, "form": form})
 
 @require_http_methods(["GET"])
