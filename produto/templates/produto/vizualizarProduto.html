@@ -22,22 +22,15 @@
       <section class="col-12 mb-4">
         <div class="d-flex justify-content-start align-items-center gap-3">
           <h2 class="fs-2">{{ produto.nome }}</h2>
-          <div class="btn-group" role="group">
-            <a
-              href="{% url 'atualizarProduto' produto.id %}"
-              class="btn btn-sm btn-outline-primary d-block mb-2"
-              title="Editar produto"
-              >
+          <fieldset class="btn-group">
+            <a href="{% url 'atualizarProduto' produto.id %}" class="btn btn-sm btn-outline-primary d-block mb-2" title="Editar produto">
               <i class="bi bi-pen"></i>
             </a>
-            <a
-              href="{% url 'deletarProduto' produto.id %}"
-              class="btn btn-sm btn-outline-primary d-block mb-2"
-              title="Remover produto"
-              >
+            <a href="{% url 'deletarProduto' produto.id %}" class="btn btn-sm btn-outline-primary d-block mb-2" title="Remover produto">
               <i class="bi bi-trash"></i>
             </a>
-          </div>
+          </fieldset>
+          
         </div>
         {% if produto.descricao|length > 0 %}
         <p class="text-muted mb-2">Descrição: {{ produto.descricao }}</p>
