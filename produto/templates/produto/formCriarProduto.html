@@ -18,7 +18,7 @@
     <h2 class="fs-2">Cadastrar produto</h2>
 
     <div class="col-12 mb-5">
-      <form action="" method="post">
+      <form action="{% url 'view_criar_produto_post' %}" method="post">
         {% csrf_token %}
 
         {% include 'form_render.html' %}
