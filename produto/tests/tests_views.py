@@ -3,7 +3,7 @@ from django.urls import reverse
 from produto.models import Produto
 # Create your tests here.
 
-class ProdutoViewVizualizarProduto(TestCase):
+class ProdutoViewvisualizarProduto(TestCase):
     @classmethod
     def setUpTestData(cls):
         num_produtos = 10

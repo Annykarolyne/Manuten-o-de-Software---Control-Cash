@@ -30,7 +30,7 @@
             </button>
           </div>
         </form>
-        <a href="{% url 'criarProduto' %}" class="btn btn-primary">
+        <a href="{% url 'view_criar_produto_get' %}" class="btn btn-primary">
           <i class="bi bi-plus-lg"></i>
           Cadastrar
         </a>
@@ -64,7 +64,7 @@
       {% for produto in page_obj %}
       <div class="col">
         <div class="card border-primary">
-          <a href="{% url 'vizualizarProduto' produto.id %}" class="text-decoration-none text-dark">
+          <a href="{% url 'view_vizualizar_produto' produto.id %}" class="text-decoration-none text-dark">
             <div class="card-body">
               <h3 class="card-title fs-4">{{ produto.nome }}</h3>
               <p class="mb-0 align-middle">

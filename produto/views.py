@@ -25,16 +25,17 @@ def home_produto(request):
     
     return render(request, "produto/home.html", {"page_obj": page_obj, "pesquisa": nome_produto})
 
-@require_http_methods(["GET", "POST"])
-def view_criar_produto(request):
+@require_http_methods(["GET"])
+def view_criar_produto_get(request):
     form = CadastrarProduto()
+    return render(request, 'produto/formCriarProduto.html', {"form": form})
 
-    if request.method == 'POST':
-        form = CadastrarProduto(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(redirect_response)
-    
+@require_http_methods(["POST"])
+def view_criar_produto_post(request):
+    form = CadastrarProduto(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect(redirect_response)
     return render(request, 'produto/formCriarProduto.html', {"form": form})
 
 @require_http_methods(["GET"])
@@ -42,7 +43,7 @@ def view_vizualizar_produto(request, id):
     produto = get_object_or_404(Produto, id=id)
     vendas = Venda.objects.filter(item__produto=produto).order_by('-id')[:6]
     
-    return render(request, 'produto/vizualizarProduto.html', {"produto": produto, "vendas": vendas})
+    return render(request, 'produto/visualizarProduto.html', {"produto": produto, "vendas": vendas})
 
 @require_http_methods(["GET"])
 def view_editar_produto(request, id):
