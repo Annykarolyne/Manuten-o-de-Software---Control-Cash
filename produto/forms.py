@@ -4,4 +4,4 @@ from .models import Produto
 class CadastrarProduto(ModelForm):
     class Meta:
         model = Produto
-        fields = '__all__'
+        fields = ['nome', 'preco_venda', 'descricao', 'quantidade_estoque']
