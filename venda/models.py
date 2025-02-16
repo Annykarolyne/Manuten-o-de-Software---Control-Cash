@@ -16,7 +16,7 @@ class Endereco(models.Model):
     estado = models.CharField(max_length=150, verbose_name='estado')
     pais = models.CharField(
         max_length=150, verbose_name='país', default='Brasil')
-    complemento = models.TextField(blank=True, null=True)
+    complemento = models.TextField(blank=True)
 
     def __str__(self) -> str:
         return f"{self.numero, self.cidade, self.bairro}"

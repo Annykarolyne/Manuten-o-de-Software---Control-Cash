@@ -37,19 +37,19 @@
           {{ venda.get_status_display }}
         </p>
         {% if venda.status == 'ativa' %}
-          <div class="btn-group mt-3 w-100" role="group">
-            <a class="btn btn-primary" href="{% url 'venda:venda_finalizar' venda.id %}">
-              Finalizar
-            </a>
-            <a class="btn btn-outline-primary" href="{% url 'venda:venda_desativar' venda.id %}">
-              Desativar
-            </a>
-          </div>
-        {% elif venda.status == 'inativa' %}
-          <a class="btn btn-outline-primary w-100" href="{% url 'venda:venda_reativar' venda.id %}">
-            Reativar
+        <fieldset class="btn-group">
+          <a class="btn btn-primary" href="{% url 'venda:venda_finalizar' venda.id %}">
+            Finalizar
           </a>
-        {% endif %}
+          <a class="btn btn-outline-primary" href="{% url 'venda:venda_desativar' venda.id %}">
+            Desativar
+          </a>
+        </fieldset>
+      {% elif venda.status == 'inativa' %}
+        <a class="btn btn-outline-primary w-100" href="{% url 'venda:venda_reativar' venda.id %}">
+          Reativar
+        </a>
+      {% endif %}
       </div>
     </div>
   </section>
@@ -100,7 +100,7 @@
                 <td>R$ {{ item.valor_total }}</td>
                 {% if venda.status == 'ativa' %}
                   <td>
-                    <div class="btn-group" role="group">
+                    <fieldset class="btn-group">
                       <a
                         href="{% url 'venda:item_editar' pk=item.id %}"
                         class="btn btn-sm btn-outline-primary"
@@ -115,7 +115,7 @@
                       >
                         <i class="bi bi-trash"></i>
                       </a>
-                    </div>
+                    </fieldset>                    
                   </td>
                 {% endif %}
               </tr>
