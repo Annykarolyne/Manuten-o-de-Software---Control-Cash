@@ -37,14 +37,14 @@
           {{ venda.get_status_display }}
         </p>
         {% if venda.status == 'ativa' %}
-          <div class="btn-group mt-3 w-100" role="group">
+          <fieldset class="btn-group mt-3 w-100">
             <a class="btn btn-primary" href="{% url 'venda:venda_finalizar' venda.id %}">
               Finalizar
             </a>
             <a class="btn btn-outline-primary" href="{% url 'venda:venda_desativar' venda.id %}">
               Desativar
             </a>
-          </div>
+          </fieldset>
         {% elif venda.status == 'inativa' %}
           <a class="btn btn-outline-primary w-100" href="{% url 'venda:venda_reativar' venda.id %}">
             Reativar
