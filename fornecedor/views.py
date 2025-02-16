@@ -79,11 +79,13 @@ def vizualizar_fornecedor(request, id):
         return render(request, 'vizualizarFornecedor.html', {'fornecedor': fornecedor})
 
 
-@require_http_methods(["GET", "POST"])
-def deletar_fornecedor(request, id):
+@require_http_methods(["GET"])
+def deletar_fornecedor_get(request, id):
     fornecedor = get_object_or_404(Fornecedor, id=id)
-
-    if request.method == 'POST':
-        fornecedor.delete()
-        return redirect(redirect_response)
     return render(request, 'excluir_fornecedor.html', {'fornecedor': fornecedor})
+
+@require_http_methods(["POST"])
+def deletar_fornecedor_post(request, id):
+    fornecedor = get_object_or_404(Fornecedor, id=id)
+    fornecedor.delete()
+    return redirect(redirect_response)

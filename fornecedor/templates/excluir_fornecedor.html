@@ -24,7 +24,7 @@
       Não será visualizar o endereço ou dados de contato do fornecedor {{ fornecedor.nome|capfirst }}.
     </p>
     
-    <form method="post">
+    <form action="{% url 'deletar_fornecedor_post' id=fornecedor.id %}" method="post">
       {% csrf_token %}
       <button type="submit" class="btn btn-danger">Remover</button>
       <a
