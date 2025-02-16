@@ -100,7 +100,7 @@
                 <td>R$ {{ item.valor_total }}</td>
                 {% if venda.status == 'ativa' %}
                   <td>
-                    <div class="btn-group" role="group">
+                    <fieldset class="btn-group">
                       <a
                         href="{% url 'venda:item_editar' pk=item.id %}"
                         class="btn btn-sm btn-outline-primary"
@@ -115,7 +115,7 @@
                       >
                         <i class="bi bi-trash"></i>
                       </a>
-                    </div>
+                    </fieldset>
                   </td>
                 {% endif %}
               </tr>
