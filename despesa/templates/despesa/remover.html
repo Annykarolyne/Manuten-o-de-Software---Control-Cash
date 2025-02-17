@@ -20,7 +20,7 @@
   <col-12>
     <h2 class="fs-2">Tem certeza que deseja remover a despesa "{{ despesa.nome }}"?</h2>
     
-    <form method="post">
+    <form action="{% url 'despesa:despesa_remover_post' despesa.pk %}" method="post">
       {% csrf_token %}
       <button type="submit" class="btn btn-danger">Remover</button>
       <a
