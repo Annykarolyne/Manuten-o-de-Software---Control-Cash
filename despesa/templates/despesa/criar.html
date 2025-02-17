@@ -2,7 +2,6 @@
 
 {% block title %}Criar despesa | {% endblock %}
 
-
 {% block content %}
 <main class="row my-3">
   <div class="col">
@@ -18,7 +17,7 @@
     <h2 class="fs-2">Cadastrar despesa</h2>
 
     <div class="col-12 mb-5">
-      <form action="" method="post">
+      <form action="{% url 'despesa:despesa_criar_post' %}" method="post">
         {% csrf_token %}
 
         {% include 'form_render.html' %}

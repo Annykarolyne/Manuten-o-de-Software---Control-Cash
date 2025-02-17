@@ -20,15 +20,17 @@ def listar_despesas_view(request):
     return render(request, 'despesa/listar.html', {"page_obj": page_obj})
 
 
-@require_http_methods(["GET", "POST"])
-def criar_despesa_view(request):
+@require_GET
+def criar_despesa_get_view(request):
     form = DespesaForm()
+    return render(request, 'despesa/criar.html', {'form': form})
 
-    if request.method == 'POST':
-        form = DespesaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(SUCCESS_REDIRECT_URL)
+@require_http_methods(["POST"])
+def criar_despesa_post_view(request):
+    form = DespesaForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect(SUCCESS_REDIRECT_URL)
     return render(request, 'despesa/criar.html', {'form': form})
 
 
