@@ -34,26 +34,29 @@ def criar_despesa_post_view(request):
     return render(request, 'despesa/criar.html', {'form': form})
 
 
-@require_http_methods(["GET", "POST"])
-def editar_despesa_view(request, pk):
+@require_GET
+def editar_despesa_get_view(request, pk):
     despesa = get_object_or_404(Despesa, id=pk)
     form = DespesaForm(instance=despesa)
+    return render(request, 'despesa/editar.html', {'despesa': despesa, 'form': form})
 
-    if request.method == 'POST':
-        despesa_nao_foi_paga = not bool(despesa.paga)
-        form = DespesaForm(request.POST, instance=despesa)
+@require_http_methods(["POST"])
+def editar_despesa_post_view(request, pk):
+    despesa = get_object_or_404(Despesa, id=pk)
+    despesa_nao_foi_paga = not bool(despesa.paga)
+    form = DespesaForm(request.POST, instance=despesa)
 
-        if form.is_valid():
-            despesa_salva = form.save()
+    if form.is_valid():
+        despesa_salva = form.save()
 
-            if despesa_nao_foi_paga and despesa_salva.periodica and despesa_salva.paga:
-                Despesa.objects.create(
-                    nome=despesa_salva.nome,
-                    valor=despesa_salva.valor,
-                    periodica=despesa_salva.periodica,
-                    vencimento=despesa_salva.vencimento+relativedelta(months=1)
-                )
-            return redirect(SUCCESS_REDIRECT_URL)
+        if despesa_nao_foi_paga and despesa_salva.periodica and despesa_salva.paga:
+            Despesa.objects.create(
+                nome=despesa_salva.nome,
+                valor=despesa_salva.valor,
+                periodica=despesa_salva.periodica,
+                vencimento=despesa_salva.vencimento + relativedelta(months=1)
+            )
+        return redirect(SUCCESS_REDIRECT_URL)
     return render(request, 'despesa/editar.html', {'despesa': despesa, 'form': form})
 
 
