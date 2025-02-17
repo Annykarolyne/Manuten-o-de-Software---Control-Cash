@@ -6,6 +6,10 @@ ENV PORT=8000
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
+RUN addgroup -S nonroot \
+    && adduser -S nonroot -G nonroot
+
+USER nonroot
 # instala dependencias do sistema para o mariadb
 RUN apk add --no-cache gcc mariadb-connector-c-dev mariadb-dev musl-dev
 
