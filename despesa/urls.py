@@ -5,7 +5,8 @@ from despesa.views import (
     criar_despesa_post_view,
     editar_despesa_get_view,
     editar_despesa_post_view,
-    remover_despesa_view
+    remover_despesa_get_view,
+    remover_despesa_post_view
 )
 
 app_name = 'despesa'
@@ -16,5 +17,6 @@ urlpatterns = [
     path('criar/post/', criar_despesa_post_view, name='despesa_criar_post'),
     path('<int:pk>/editar/', editar_despesa_get_view, name='despesa_editar_get'),
     path('<int:pk>/editar/post/', editar_despesa_post_view, name='despesa_editar_post'),
-    path('<int:pk>/remover/', remover_despesa_view, name='despesa_remover'),
+    path('<int:pk>/remover/', remover_despesa_get_view, name='despesa_remover_get'),
+    path('<int:pk>/remover/post/', remover_despesa_post_view, name='despesa_remover_post'),
 ]

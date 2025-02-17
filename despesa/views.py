@@ -60,14 +60,17 @@ def editar_despesa_post_view(request, pk):
     return render(request, 'despesa/editar.html', {'despesa': despesa, 'form': form})
 
 
-@require_http_methods(["GET", "POST"])
-def remover_despesa_view(request, pk):
+@require_GET
+def remover_despesa_get_view(request, pk):
     despesa = get_object_or_404(Despesa, id=pk)
-
     if despesa.paga:
         raise Http404
-
-    if request.method == 'POST':
-        despesa.delete()
-        return redirect(SUCCESS_REDIRECT_URL)
     return render(request, 'despesa/remover.html', {'despesa': despesa})
+
+@require_http_methods(["POST"])
+def remover_despesa_post_view(request, pk):
+    despesa = get_object_or_404(Despesa, id=pk)
+    if despesa.paga:
+        raise Http404
+    despesa.delete()
+    return redirect(SUCCESS_REDIRECT_URL)
