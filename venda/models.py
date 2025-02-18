@@ -47,7 +47,6 @@ class Venda(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='ativa')
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
-    # TODO adicionar foreign key vendedor
 
     def __str__(self) -> str:
         return f"{self.item_set.count} itens vendidos para {self.cliente} ({self.status})"
